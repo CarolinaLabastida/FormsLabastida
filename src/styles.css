@@ -1,1 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+
+* { margin: 0; font-family: PtSans,PtSerif,Georgia,Times,Times New Roman,serif; box-sizing: border-box; }
+
+:root{
+    --toolbar-height:60px;
+    --sidebar-width:230px;
+}

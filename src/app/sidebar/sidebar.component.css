@@ -1,0 +1,25 @@
+aside{
+    width: var(--sidebar-width);
+    height: calc(100vh - var(--toolbar-height));
+    position: fixed;
+    background-color: #3c3b3bf7;
+}
+
+.admin-sidenav {
+margin-left: 0px; 
+}
+.admin-sidenav a {
+    text-decoration: none; 
+}
+.admin-sidenav li {
+text-align: justify;
+padding: .5rem;
+padding-left: 1rem;
+border-bottom: 1px solid #5c5d5db0; 
+}
+
+.admin-sidenav li a {
+    color: #fff; 
+    }
+
+

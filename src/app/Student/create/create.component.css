@@ -1,0 +1,15 @@
+.form-group{
+    padding-bottom: 10px;
+}
+
+.required:after {
+    content:"*";color:red;
+}
+
+button{
+    float: right;
+}
+
+.subtitle{
+    font-weight: bold;
+}

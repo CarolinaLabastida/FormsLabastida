@@ -1,0 +1,34 @@
+<div *ngFor="let error of formErrors | keyvalue">
+  <ng-container [ngSwitch]="error.key">
+    <small class="text-danger" *ngSwitchCase="'required'">
+      Este campo es requerido
+    </small>
+    <small class="text-danger" *ngSwitchCase="'minlength'">
+      Debe contener al menos {{ error.value["requiredLength"] }} caracteres
+    </small>
+    <small class="text-danger" *ngSwitchCase="'maxlength'">
+      Debe contener máximo {{ error.value["requiredLength"] }} caracteres
+    </small>
+    <small class="text-danger" *ngSwitchCase="'email'">
+      Ingrese un correo electrónico válido
+    </small>
+    <small class="text-danger" *ngSwitchCase="'dateInvalid'">
+      Ingrese una fecha válida
+    </small>
+    <ng-container class="text-danger" *ngSwitchCase="'pattern'">
+      <ng-container [ngSwitch]="error.value['requiredPattern']">
+        <small
+          class="text-danger"
+          *ngSwitchCase="'^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$'"
+        >
+          La contraseña solo debe contener letras mayúsculas, minúsculas, y
+          números
+        </small>
+        <small class="text-danger" *ngSwitchCase="'^[0-9]{10}$'">
+          El campo Teléfono debe contener 10 números
+        </small>
+      </ng-container>
+    </ng-container>
+    <small class="text-danger" *ngSwitchDefault>Error desconocido</small>
+  </ng-container>
+</div>

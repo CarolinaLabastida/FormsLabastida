@@ -1,0 +1,179 @@
+<app-index [(visible)]="tableVisible" [Students]="students"></app-index>
+<div class="card" *ngIf="!tableVisible">
+  <div class="card-body">
+    <h3 class="pb-2">Registro de estudiantes</h3>
+    <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="form-group col-12">
+          <label [class.required]="fullNameControl.hasError('required')"
+            >Nombre completo</label
+          >
+          <input
+            formControlName="fullName"
+            type="text"
+            class="form-control"
+            [class.is-invalid]="
+              fullNameControl.invalid && fullNameControl.touched
+            "
+          />
+          <app-form-error-helper
+            *ngIf="fullNameControl.invalid && fullNameControl.touched"
+            [formErrors]="fullNameControl.errors"
+          ></app-form-error-helper>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-4">
+          <label [class.required]="birthDateControl.hasError('required')"
+            >Fecha de nacimiento</label
+          >
+          <input
+            formControlName="birthDate"
+            type="date"
+            class="form-control"
+            [class.is-invalid]="
+              birthDateControl.invalid && birthDateControl.touched
+            "
+          />
+          <app-form-error-helper
+            *ngIf="birthDateControl.invalid && birthDateControl.touched"
+            [formErrors]="birthDateControl.errors"
+          ></app-form-error-helper>
+        </div>
+        <div class="form-group col-md-4">
+          <label [class.required]="courseControl.hasError('required')"
+            >Curso</label
+          >
+          <select
+            formControlName="course"
+            class="form-select"
+            [class.is-invalid]="courseControl.invalid && courseControl.touched"
+          >
+            <option value="">Seleccione una opción</option>
+            <option>Angular</option>
+            <option>Java</option>
+            <option>Html</option>
+          </select>
+          <app-form-error-helper
+            *ngIf="courseControl.invalid && courseControl.touched"
+            [formErrors]="courseControl.errors"
+          ></app-form-error-helper>
+        </div>
+        <div class="form-group col-md-4">
+          <label [class.required]="genderControl.hasError('required')"
+            >Sexo</label
+          >
+          <select
+            formControlName="gender"
+            class="form-select"
+            [class.is-invalid]="genderControl.invalid && genderControl.touched"
+          >
+            <option value="" selected>Seleccione una opción</option>
+            <option value="H">Hombre</option>
+            <option value="M">Mujer</option>
+          </select>
+          <app-form-error-helper
+            *ngIf="genderControl.invalid && genderControl.touched"
+            [formErrors]="genderControl.errors"
+          ></app-form-error-helper>
+        </div>
+      </div>
+      <br />
+      <label class="subtitle"
+        ><i class="fa fa-address-book"></i> Datos de contacto</label
+      >
+      <hr />
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label [class.required]="emailControl.hasError('required')"
+            >Correo Electrónico</label
+          >
+          <input
+            formControlName="email"
+            type="email"
+            class="form-control"
+            [class.is-invalid]="emailControl.invalid && emailControl.touched"
+            (keyup)="onkeyupEmail()"
+          />
+          <app-form-error-helper
+            *ngIf="emailControl.invalid && emailControl.touched"
+            [formErrors]="emailControl.errors"
+          ></app-form-error-helper>
+        </div>
+        <div class="form-group col-md-6">
+          <label [class.required]="phoneControl.hasError('required')"
+            >Teléfono</label
+          >
+          <input
+            formControlName="phone"
+            type="text"
+            class="form-control"
+            [class.is-invalid]="phoneControl.invalid && phoneControl.touched"
+          />
+          <app-form-error-helper
+            *ngIf="phoneControl.invalid && phoneControl.touched"
+            [formErrors]="phoneControl.errors"
+          ></app-form-error-helper>
+        </div>
+      </div>
+      <br />
+      <label class="subtitle"><i class="fa fa-lock"></i> Acceso</label>
+      <hr />
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label [class.required]="userControl.hasError('required')"
+            >Usuario</label
+          >
+          <input
+            formControlName="user"
+            type="text"
+            class="form-control"
+            readonly
+            [class.is-invalid]="userControl.invalid && userControl.touched"
+          />
+          <app-form-error-helper
+            *ngIf="userControl.invalid && userControl.touched"
+            [formErrors]="userControl.errors"
+          ></app-form-error-helper>
+        </div>
+        <div class="form-group col-md-6">
+          <label [class.required]="passwordControl.hasError('required')"
+            >Contraseña</label
+          >
+          <div class="input-group">
+            <input
+              formControlName="password"
+              [type]="fieldTextType ? 'text' : 'password'"
+              type="password"
+              class="form-control"
+              [class.is-invalid]="
+                passwordControl.invalid && passwordControl.touched
+              "
+            />
+            <div class="input-group-addon">
+              <span class="input-group-text" class="form-control">
+                <i
+                  class="fa"
+                  [ngClass]="{
+                    'fa-eye-slash': !fieldTextType,
+                    'fa-eye': fieldTextType
+                  }"
+                  (click)="toggleFieldTextType()"
+                ></i>
+              </span>
+            </div>
+          </div>
+          <small *ngIf="!passwordControl.touched" class="form-text text-muted"
+            >La contraseña solo debe contener letras mayúsculas, minúsculas, y
+            números.</small
+          >
+          <app-form-error-helper
+            *ngIf="passwordControl.invalid && passwordControl.touched"
+            [formErrors]="passwordControl.errors"
+          ></app-form-error-helper>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success">Guardar</button>
+    </form>
+  </div>
+</div>

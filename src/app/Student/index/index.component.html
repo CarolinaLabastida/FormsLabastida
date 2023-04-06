@@ -1,0 +1,29 @@
+<div class="container-fluid" *ngIf="visible">
+  <div class="text-end pb-2">
+    <button class="btn btn-primary" (click)="onClickNew()">
+      <i class="fa fa-plus"></i> Nuevo estudiante
+    </button>
+  </div>
+  <table class="table">
+    <thead class="table-dark">
+      <tr>
+        <td>Nombre completo</td>
+        <td>Fecha de nacimiento</td>
+        <td>Correo Electrónico</td>
+        <td>Teléfono</td>
+        <td>Sexo</td>
+        <td>Curso</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of Students">
+        <td>{{ student.fullName }}</td>
+        <td>{{ student.birthDate | date : "MM/dd/yyyy" }}</td>
+        <td>{{ student.email }}</td>
+        <td>{{ student.phone }}</td>
+        <td>{{ student.gender }}</td>
+        <td>{{ student.course }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
